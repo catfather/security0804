@@ -32,7 +32,8 @@ public class WebSecurityConfigClass{
         http.authorizeHttpRequests()
                 .antMatchers("/"
                         ,"/member/login"
-                        ,"/member/join").permitAll() //모든 접근 허용
+                        ,"/member/join")
+                .permitAll() //모든 접근 허용
                 .antMatchers("/"
                         ,"/css/**"
                         ,"/img/**"
@@ -57,22 +58,14 @@ public class WebSecurityConfigClass{
                 .passwordParameter("password")
                 .loginProcessingUrl("/member/login") //form URL POST
                 //로그인 성공시 이동 페이지 설정
-                .defaultSuccessUrl("/member/loginFail")
+                .defaultSuccessUrl("/index")
                 .permitAll();
 
+        //로그아웃 설정
         //반대로 로그 아웃 설정!
         http.logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/member/logout")) //개발자가 직접 로그 아웃url 설정
                 .logoutSuccessUrl("/");
-
-
-
-    //로그아웃 설정
-
-
-
-
-
 
         return http.build();
     }

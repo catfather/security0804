@@ -1,7 +1,9 @@
 package spring.security.entity;
 
 import lombok.*;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import spring.security.contrant.Role;
+import spring.security.dto.MemberDto;
 
 import javax.persistence.*;
 
@@ -30,4 +32,14 @@ public class MemberEntity extends BaseEntity{
     //role
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    public static MemberEntity toMemberEntity(MemberDto memberDto, PasswordEncoder passwordEncoder) {
+                MemberEntity memberEntity = MemberEntity.builder()
+                .email(memberDto.getEmail())
+                .password(passwordEncoder.encode(memberDto.getPassword()))
+                .role(Role.MEMBER)
+                        //반드시 비밀번호 암호화 필수!
+                .build();
+        return memberEntity;
+    }
 }

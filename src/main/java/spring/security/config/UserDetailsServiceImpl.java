@@ -2,6 +2,7 @@ package spring.security.config;
 
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -18,10 +19,9 @@ import spring.security.repository.MemberRepository;
 
 @Service
 @AllArgsConstructor
-@RequiredArgsConstructor
-
 public class UserDetailsServiceImpl implements UserDetailsService {
 
+    @Autowired
     private final MemberRepository memberRepository;
 
     @Override

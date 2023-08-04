@@ -9,7 +9,7 @@
 </th:block>
 
 <th:block layout:fragment="css">
-    <link rel="stylesheet" th:href="@{/css/login.css}">
+    <link rel="stylesheet" th:href="@{/css/index.css}">
 </th:block>
 
 <th:block layout:fragment="javascript">
@@ -20,16 +20,17 @@
     <div class="container">
         <div class="index">
             <div class="index con">
-                <form th:action="@{/member/login}" method="post">
-                    <h1>로그인 페이지~~!</h1>
+                <form th:action="@{/member/join}" method="post" th:object="${memberDto}">
                     <ul>
                         <li>
-                            <label for="email">email</label>
-                            <input type="text" id="email" name="email">
+                            <label th:for="email">email</label>
+                            <input type="text" th:field="*{email}">
+                            <p th:if="${#fields.hasErrors('email')}"> 에러가 발생 했습니다.</p>
                         </li>
                         <li>
-                            <label for="password">password</label>
-                            <input type="text" id="password" name="password">
+                            <label th:for="password">password</label>
+                            <input type="text" th:field="*{password}">
+                            <p th:if="${#fields.hasErrors('password')}"> 에러가 발생 했습니다.</p>
                         </li>
                     </ul>
                     <input type="submit" value="submit">

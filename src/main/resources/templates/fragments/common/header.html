@@ -1,25 +1,47 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <div class="header" th:fragment="headerFragment">
     <div class="nav">
-        <h1 class="logo">
-            <a th:href="@{/index}">
-                <img th:src="@{/img/logo.png}" alt="no img">
-            </a>
-        </h1>
-
-        <div class="gnb">
+        <div class="left-nav">
+            <h1 class="logo">
+                <a th:href="@{/index}">
+                    <img th:src="@{/img/logo.png}" alt="no img">
+                </a>
+            </h1>
+            <div class="gnb">
+                <ul>
+                    <li><a th:href="@{/index}">HOME</a></li>
+                    <li><a th:href="@{/index}">brand</a></li>
+                    <li><a th:href="@{/index}">best</a></li>
+                    <li><a th:href="@{/index}">MAN</a></li>
+                    <li><a th:href="@{/index}">WOMEN</a></li>
+                    <li sec:authorize="hasAnyRole('ADMIN','MEMBER')"><a th:href="@{/member/memberShip}">MEMBERSHIP</a></li>
+                    <li sec:authorize="hasAnyRole('ADMIN','SELLER')"><a th:href="@{/shop}">SHOP</a></li>
+                    <!--hasAnyRole('ADMIN') = 우리가 설정한 role을 조회해 해당 role면 보임 -->
+                    <li sec:authorize="hasAnyRole('ADMIN')"><a th:href="@{/admin}">admin</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="right-nav">
             <ul>
-                <li><a th:href="@{/index}">HOME</a></li>
-                <li><a th:href="@{/member/memberShip}">MEMBER</a></li>
-                <li><a th:href="@{/shop}">SHOP</a></li>
-                <li><a th:href="@{/admin}">admin</a></li>
-                <li><a th:href="@{/member/login}">login</a></li>
-                <li><a th:href="@{/member/join}">join</a></li>
-                <li><a th:href="@{/member/logout}">logout</a></li>
+                <!--isAnonymous() = 비 로그인일때 보임 -->
+                <li sec:authorize="isAnonymous()"><a th:href="@{/member/login}" >login</a></li>
+                <!--isAnonymous() = 비 로그인일때 보임 -->
+                <li sec:authorize="isAnonymous()"><a th:href="@{/member/join}" >join</a></li>
+                <!--isAuthenticated() = 로그인 인증 되어야 보임-->
+                <li sec:authorize="isAuthenticated()">
+                    <!--로그인이면 사용자 정보를 가져올수 있음-->
+                    <span th:text="${#authentication.principal.username}"></span>
+<!--                    <span th:text="${#authentication.authorities}"></span>-->
+                </li>
+                <li sec:authorize="isAuthenticated()"><a th:href="@{/member/logout}" >logout</a></li>
+                <li><a th:href="@{/board}" >고객센터</a></li>
             </ul>
         </div>
+
     </div>
 </div>
 </html>
