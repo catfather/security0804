@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/fragments/layout/baseLayout}">
+
+<!--원래 title 태그를 이렇게 fragment 등록-->
+<th:block layout:fragment="title">
+    <title>index</title>
+</th:block>
+
+<th:block layout:fragment="css">
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+</th:block>
+
+<th:block layout:fragment="javascript">
+    <!--각 페이지의 타이틀 설정-->
+</th:block>
+
+<th:block layout:fragment="container">
+    <div class="container">
+        <div class="index">
+            <div class="index con">
+                <h1>index</h1>
+            </div>
+        </div>
+    </div>
+</th:block>
+
+</html>

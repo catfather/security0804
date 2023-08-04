@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<div class="header" th:fragment="headerFragment">
+    <div class="nav">
+        <h1 class="logo">
+            <a th:href="@{/index}">
+                <img th:src="@{/img/logo.png}" alt="no img">
+            </a>
+        </h1>
+
+        <div class="gnb">
+            <ul>
+                <li><a th:href="@{/index}">HOME</a></li>
+                <li><a th:href="@{/member/memberShip}">MEMBER</a></li>
+                <li><a th:href="@{/shop}">SHOP</a></li>
+                <li><a th:href="@{/admin}">admin</a></li>
+                <li><a th:href="@{/member/login}">login</a></li>
+                <li><a th:href="@{/member/join}">join</a></li>
+                <li><a th:href="@{/member/logout}">logout</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+</html>

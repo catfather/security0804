@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/fragments/layout/baseLayout}">
+
+<!--원래 title 태그를 이렇게 fragment 등록-->
+<th:block layout:fragment="title">
+    <title>login</title>
+</th:block>
+
+<th:block layout:fragment="css">
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+</th:block>
+
+<th:block layout:fragment="javascript">
+    <!--각 페이지의 타이틀 설정-->
+</th:block>
+
+<th:block layout:fragment="container">
+    <div class="container">
+        <div class="index">
+            <div class="index con">
+                <form th:action="{@/member/login}" method="post">
+                    <ul>
+                        <li>
+                            <label for="email">email</label>
+                            <input type="text" id="email" name="email">
+                        </li>
+                        <li>
+                            <label for="password">password</label>
+                            <input type="text" id="password" name="password">
+                        </li>
+                    </ul>
+                    <input type="submit" value="submit">
+                </form>
+            </div>
+        </div>
+    </div>
+</th:block>
+
+</html>
